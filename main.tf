@@ -4,7 +4,7 @@ provider "azurerm" {
 
 resource "azurerm_resource_group" "example" {
     name     = "example-resources"
-    location = "East US"
+    location = var.location
 }
 
 resource "azurerm_virtual_network" "example" {
