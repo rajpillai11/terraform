@@ -15,6 +15,7 @@ variable "admin_password" {
   description = "The admin password for the virtual machine."
   type        = string
   default     = "P@ssword1234!"
+}
 
 variable "adminusername" {
   description = "The admin username for the virtual machine."
