@@ -10,3 +10,10 @@ variable "sku" {
   default     = "Standard_DS1_v2"
   
 }
+
+variable "admin_password" {
+  description = "The admin password for the virtual machine."
+  type        = string
+  default     = "P@ssword1234!"
+  
+}
