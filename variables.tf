@@ -4,3 +4,9 @@ variable "location" {
   default     = "East US"
   
 }
+variable "sku" {
+  description = "The SKU of the virtual machine."
+  type        = string
+  default     = "Standard_DS1_v2"
+  
+}
