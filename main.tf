@@ -38,7 +38,7 @@ resource "azurerm_windows_virtual_machine" "example" {
     name                = "VM1"
     resource_group_name = azurerm_resource_group.example.name
     location            = azurerm_resource_group.example.location
-    size                = "Standard_DS1_v2"
+    size                = var.sku
     admin_username      = "adminuser"
     admin_password      = "P@ssword1234!"
     network_interface_ids = [
@@ -58,3 +58,10 @@ resource "azurerm_windows_virtual_machine" "example" {
         version   = "latest"
     }
 }
+resource "azurerm_virtual_network" "example2" {
+    name                = "example-vnet-2"
+    address_space       = ["10.1.0.0/16"]
+    location            = var.location
+    resource_group_name = azurerm_resource_group.example.name
+}
+    
