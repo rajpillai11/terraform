@@ -23,3 +23,9 @@ variable "adminusername" {
   default     = "adminuser"
 
 }
+variable "location1" {
+  description = "The Azure region to deploy resources in."
+  type        = string
+  default     = "West US"
+  
+}
