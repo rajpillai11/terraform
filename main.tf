@@ -64,4 +64,21 @@ resource "azurerm_virtual_network" "example2" {
     location            = var.location
     resource_group_name = azurerm_resource_group.example.name
 }
-    
+    resource "azurerm_resource_group" "tf-rg" {
+  name     = "rg-terraform-state"
+  location = var.location
+}
+
+resource "azurerm_storage_account" "tf-sa" {
+  name                     = "satfstate2907"
+  resource_group_name      = azurerm_resource_group.example.name
+  location                 = var.location
+  account_tier             = "Standard"
+  account_replication_type = "GRS"
+
+}
+resource "azurerm_storage_container" "tf-blob" {
+  name                  = "tf-state"
+  storage_account_id    = azurerm_storage_account.tf-sa.id
+  container_access_type = "private"
+}
