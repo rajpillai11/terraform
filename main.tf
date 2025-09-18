@@ -2,6 +2,14 @@ provider "azurerm" {
     features {}
     subscription_id = "91553562-85e8-433d-bbc6-090bdde12ce9"   
 }
+terraform {
+  backend "azurerm" {
+    resource_group_name   = "rg-terraform-state"
+    storage_account_name  = "tfstatestorageacct123"
+    container_name        = "tfstate"
+    key                   = "main.terraform.tfstate"
+  }
+}
 
 resource "azurerm_resource_group" "example" {
     name     = "example-resources"
