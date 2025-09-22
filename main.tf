@@ -1,11 +1,4 @@
-terraform {
-  backend "azurerm" {
-    resource_group_name   = "tf-rg"
-    storage_account_name  = "satfstate2907"
-    container_name        = "tf-blob"
-    key                   = "main.terraform.tfstate"
-  }
-}
+
 
 provider "azurerm" {
     features {}
@@ -73,9 +66,4 @@ resource "azurerm_virtual_network" "example2" {
     location            = var.location
     resource_group_name = azurerm_resource_group.example.name
 }
-  resource "azurerm_virtual_network" "example3" {
-    name                = "example-vnet-3"
-    address_space       = ["10.2.0.0/16"]
-    location            = var.location
-    resource_group_name = azurerm_resource_group.example.name
-}
+  
