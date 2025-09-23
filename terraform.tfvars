@@ -1,0 +1,5 @@
+sku = "Standard_DS1_v2"
+admin_password = "P@ssword1234!"
+adminusername = "adminuser"
+location = "East US"
+location1 = "West US"
