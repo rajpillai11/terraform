@@ -40,20 +40,20 @@ resource "azurerm_network_interface" "example" {
 }
 
 resource "azurerm_windows_virtual_machine" "example" {
-    name                = "VM1"
+    name                = "VM-${count.index}"
     resource_group_name = azurerm_resource_group.example.name
     location            = var.location
     size                = var.sku
-    admin_username      = "adminuser"
-    admin_password      = "P@ssword1234!"
+    admin_username      = var.adminusername
+    admin_password      = var.admin_password
     network_interface_ids = [
-        azurerm_network_interface.example-nic-${count.index}.id,
+        azurerm_network_interface.example[count.intex].id,
     ]
     count =2
     os_disk {
         caching              = "ReadWrite"
         storage_account_type = "Standard_LRS"
-        name                 = "vm1-osdisk"
+        name                 = "vm-${count.index}-osdisk"
     }
 
     source_image_reference {
