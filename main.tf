@@ -13,7 +13,7 @@ resource "azurerm_resource_group" "example" {
 resource "azurerm_virtual_network" "example" {
     name                = "example-vnet"
     address_space       = ["10.0.0.0/16"]
-    location            = azurerm_resource_group.example.location
+    location            = var.location
     resource_group_name = azurerm_resource_group.example.name
 }
 
@@ -25,21 +25,23 @@ resource "azurerm_subnet" "example" {
 }
 
 resource "azurerm_network_interface" "example" {
-    name                = "example-nic"
-    location            = azurerm_resource_group.example.location
+    name                = "example-nic-${count.index}"
+    location            = var.location
     resource_group_name = azurerm_resource_group.example.name
 
     ip_configuration {
-        name                          = "internal"
+        name                          = "internal-${count.index}"
         subnet_id                     = azurerm_subnet.example.id
         private_ip_address_allocation = "Dynamic"
+    
     }
+    count = 2 
 }
 
 resource "azurerm_windows_virtual_machine" "example" {
     name                = "VM1"
     resource_group_name = azurerm_resource_group.example.name
-    location            = azurerm_resource_group.example.location
+    location            = var.location
     size                = var.sku
     admin_username      = "adminuser"
     admin_password      = "P@ssword1234!"
@@ -59,6 +61,7 @@ resource "azurerm_windows_virtual_machine" "example" {
         sku       = "2019-Datacenter"
         version   = "latest"
     }
+    
 }
 
 
