@@ -47,7 +47,7 @@ resource "azurerm_windows_virtual_machine" "example" {
     admin_username      = "adminuser"
     admin_password      = "P@ssword1234!"
     network_interface_ids = [
-        azurerm_network_interface."example-nic-${count.index}".id,
+        azurerm_network_interface.example-nic-${count.index}.id,
     ]
     count =2
     os_disk {
