@@ -28,6 +28,7 @@ resource "azurerm_network_interface" "example" {
     name                = "example-nic-${count.index}"
     location            = var.location
     resource_group_name = azurerm_resource_group.example.name
+    count =     2
 
     ip_configuration {
         name                          = "internal-${count.index}"
@@ -35,7 +36,7 @@ resource "azurerm_network_interface" "example" {
         private_ip_address_allocation = "Dynamic"
     
     }
-    count = 2 
+    
 }
 
 resource "azurerm_windows_virtual_machine" "example" {
